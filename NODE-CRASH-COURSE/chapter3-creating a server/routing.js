@@ -10,11 +10,27 @@ const http = require('http');
 //for that we need to use fs(file system module)
 
 const fileSystem = require('fs');
-const { error } = require('console');
+
+// using lodash
+const _ = require('lodash');
+
 
 // create the server
 const server = http.createServer((req,res) => {
-    console.log(req.url, req.method);
+    // console.log(req.url, req.method);
+
+    //lodash
+    const num = _.random(0,20)
+    console.log(num);
+
+
+    // we can also print a message only once using lodash 
+    const greet = _.once(() => {
+        console.log('hello');
+    })
+
+    greet();
+    greet();
 
     // set header content type
     res.setHeader('Content-type', 'text/html');
