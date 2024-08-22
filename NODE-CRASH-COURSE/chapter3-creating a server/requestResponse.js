@@ -33,42 +33,42 @@ highlighting the need for a more organized approach for larger websites.
     -> with different codes representing different scenarios. 
 */
 
-const http = require('http');
+// const http = require('http');
 
-const fileSystem = require('fs');
+// const fileSystem = require('fs');
 
-const server = http.createServer((req, res) => {
-    console.log(req.url, req.method);
+// const server = http.createServer((req, res) => {
+//     console.log(req.url, req.method);
 
-    // now we want to load html files , for that we need to use fs(file system module)
-    fileSystem.readFile('./views/index.html', (error, data) => {
-        if(error) {
-            console.log(error);
-            // if there is error then we need to end the response otherwise it will be alive
-            res.end();
-        } else {
-            res.write(data);
-            res.end();
-        }
-    });
+//     // now we want to load html files , for that we need to use fs(file system module)
+//     fileSystem.readFile('./views/index.html', (error, data) => {
+//         if(error) {
+//             console.log(error);
+//             // if there is error then we need to end the response otherwise it will be alive
+//             res.end();
+//         } else {
+//             res.write(data);
+//             res.end();
+//         }
+//     });
 
-    /* 
-    // to add anything into the response 3 steps are need to follow
+//     /* 
+//     // to add anything into the response 3 steps are need to follow
 
-    //set header content type
-    res.setHeader('Content-type', 'text/html');
+//     //set header content type
+//     res.setHeader('Content-type', 'text/html');
 
-    // this is if we want to send or work incode in this file 
+//     // this is if we want to send or work incode in this file 
 
-    // // write something to the header
-    // res.write('<h2>hello world!!!</h2>');
-    // res.write('<p>hello from sadid</p>');
+//     // // write something to the header
+//     // res.write('<h2>hello world!!!</h2>');
+//     // res.write('<p>hello from sadid</p>');
 
-    // after writing into the header end the header
-    res.end();
-    */
-})
+//     // after writing into the header end the header
+//     res.end();
+//     */
+// })
 
-server.listen(3000, 'localhost', () => {
-    console.log('listening for requests on port 3000');
-})
+// server.listen(3000, 'localhost', () => {
+//     console.log('listening for requests on port 3000');
+// })
