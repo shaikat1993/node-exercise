@@ -3,9 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- <link rel="stylesheet" href="styles.css"> I have a styles.css file -->
+      <title>Blog Sadid | <%= title %> </title>
 </head>
 <body>
-    
+
     <nav>
         <div class="site-title">
         <a href="/">
@@ -28,6 +29,19 @@
 
     <div class="blos content">
         <h2>All Blogs</h2>
+
+        <!-- here we want to show the blogs array which has been passed into here from app.js file
+        now we want to check 
+        if the length of the array is greater than 0 
+        meaning does the array has any object or value or is it empty.  -->
+        <% if (blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+                <h3 class="title"><%= blog.title%></h3>
+                <p class="snippet"><%= blog.snippet%></p>
+            <%}) %>
+        <% } else { %>
+            <p>There are no Blogs to display.</p>
+        <% } %>
     </div>
     
 </body>
