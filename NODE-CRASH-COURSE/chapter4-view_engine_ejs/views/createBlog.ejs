@@ -1,23 +1,11 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Sadid | <%= title %> </title>
-</head>
+    <%- include('./partials/head.ejs') %>
 <body>
-    <nav>
-        <div class="site-title">
-            <a href="/">
-                <h1>Blog Sadid</h1>
-                <p>This is my node js practice with ejs view engine</p>
-            </a>
-        </div>
-        <ul>
-            <li><a href="/">Blogs</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">New Blog</a></li>
-        </ul>
-    </nav>
+    <!-- here if we want to include a partials we have to use ejs tags(<%%>) and 
+    use - sign to include a file here. 
+    + is for adding variable(value)   -->
+    <%- include('./partials/nav.ejs') %>
+
     <div class="create-blog content">
         <form>
             <label for="title">Blog Title</label>
@@ -32,5 +20,6 @@
             <button>Submit</button>
         </form>
     </div>
+    <%- include('./partials/footer.ejs') %>
 </body>
 </html>

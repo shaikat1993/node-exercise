@@ -1,31 +1,11 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- <link rel="stylesheet" href="styles.css"> I have a styles.css file -->
-      <title>Blog Sadid | <%= title %> </title>
-</head>
+    <%- include('./partials/head.ejs') %>
 <body>
 
-    <nav>
-        <div class="site-title">
-        <a href="/">
-            <h1>Blog Sadid</h1>
-        </a>
-        <p>This is my node js practice with ejs view engine</p>
-    </div>
-    <ul>
-        <li>
-            <a href="/">Blogs</a>
-        </li>
-        <li>
-            <a href="/about">About</a>
-        </li>
-        <li>
-            <a href="/blogs/create">New Blog</a>
-        </li>
-    </ul>
-    </nav>
+    <!-- here if we want to include a partials we have to use ejs tags(<%%>) and 
+    use - sign to include a file here. 
+    + is for adding variable(value)   -->
+    <%- include('./partials/nav.ejs') %>
 
     <div class="blos content">
         <h2>All Blogs</h2>
@@ -43,6 +23,6 @@
             <p>There are no Blogs to display.</p>
         <% } %>
     </div>
-    
+    <%- include('./partials/footer.ejs') %>
 </body>
 </html>

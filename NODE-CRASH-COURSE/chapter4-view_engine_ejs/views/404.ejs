@@ -1,11 +1,12 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Sadid | <%= title %> </title>
-</head>
+    <%- include('./partials/head.ejs') %>
 <body>
-    <nav>
+    <!-- here if we want to include a partials we have to use ejs tags(<%%>) and 
+    use - sign to include a file here. 
+    + is for adding variable(value)   -->
+    <%- include('./partials/nav.ejs') %>
+
+    <!-- <nav>
         <div class="site-title">
             <a href="/">
                 <h1>Blog Sadid</h1>
@@ -17,10 +18,10 @@
             <li><a href="/about">About</a></li>
             <li><a href="/blogs/create">New Blog</a></li>
         </ul>
-    </nav>
+    </nav> -->
     <div class="not-found content">
         Opps, Page not found :(
     </div>
-    
+    <%- include('./partials/footer.ejs') %>
 </body>
 </html>
