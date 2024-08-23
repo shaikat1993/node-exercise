@@ -12,6 +12,7 @@ create Express apps and how to use Express
 
 const express = require('express');
 const ejs = require('ejs');
+const morgan = require('morgan');
 
 // setup an express app
 const app = express();
@@ -21,15 +22,12 @@ app.set('view engine', 'ejs');
 
 //listen for request
 app.listen(3000);
+app.use(morgan('dev'));
 
-// implementing middle ware
-app.use((req,res, next) => {
-    console.log('new request made');
-    console.log('host', req.hostname);
-    console.log('path', req.path);
-    console.log('method', req.method);
-    next();
-});
+// middleware & static files
+// here we are making the style folder public for 
+// which styles.css file will be accessible
+app.use(express.static('style'));
 
 app.get('/', (req, res) => {
     const blogs = [
