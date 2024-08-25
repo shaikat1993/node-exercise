@@ -10,24 +10,75 @@ create Express apps and how to use Express
 -> responses.
 */
 
+// configure env file
+require("dotenv").config();
+
 const express = require('express');
 const ejs = require('ejs');
 const morgan = require('morgan');
 
+// implementing mongoose
+// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+
+// importing blogModel
+const BlogModel = require("./models/blog");
+/*
+we can create the enviroment file for modularity
+
+
+const db = process.env.dbURI;
+mongoose.connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+    })
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error(err));;
+
+or another way is to crate in this same file
+*/
+
+
 // setup an express app
 const app = express();
 
+// connecting the database via the mongoose
+const dbURI = 'mongodb+srv://sadidur:shaikat12345@nodetutorials.kbpqp.mongodb.net/blog-application?retryWrites=true&w=majority&appName=nodetutorials'
+
+mongoose.connect(dbURI)
+    .then((result) => 
+    //listen for request
+    app.listen(3000))
+    .catch((error) => console.log(error));
+
 //registering view engine
 app.set('view engine', 'ejs');
-
-//listen for request
-app.listen(3000);
-app.use(morgan('dev'));
 
 // middleware & static files
 // here we are making the style folder public for 
 // which styles.css file will be accessible
 app.use(express.static('style'));
+app.use(morgan('dev'));
+
+// mongoose and mongo sandbox routes
+app.get('/add-blog', (req,res) => {
+    // create a new instance of blog document
+    // and save that to blog collection
+    const blogModel = new BlogModel({
+        title: 'New Blog 2',
+        snippet: 'about my new blog',
+        body: 'here is the body of my new blog'
+    });
+    blogModel.save()
+    .then( (result) => {
+        res.send(result);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+})
+
 
 app.get('/', (req, res) => {
     const blogs = [
