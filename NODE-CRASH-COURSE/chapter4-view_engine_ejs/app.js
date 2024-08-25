@@ -61,14 +61,15 @@ app.use(express.static('style'));
 app.use(morgan('dev'));
 
 // mongoose and mongo sandbox routes
+// how to add blog
 app.get('/add-blog', (req,res) => {
     // create a new instance of blog document
     // and save that to blog collection
-    const blogModel = new BlogModel({
-        title: 'New Blog 2',
-        snippet: 'about my new blog',
-        body: 'here is the body of my new blog'
-    });
+    // const blogModel = new BlogModel({
+    //     title: 'New Blog 2',
+    //     snippet: 'about my new blog',
+    //     body: 'here is the body of my new blog'
+    // });
     blogModel.save()
     .then( (result) => {
         res.send(result);
@@ -79,6 +80,38 @@ app.get('/add-blog', (req,res) => {
 
 })
 
+// to retrieve the data from the database and show them 
+// how to retrive all blog
+app.get('/all-blogs', (req, res) => {
+    BlogModel.find()
+    .then((result) => {
+        res.send(result);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+});
+
+// lets try find a single blog
+// how to find a single blog
+app.get('/single-blog', (req, res) => {
+    BlogModel.findById('66ca7bb503c878ffde9d8077')
+    .then((result) => {
+        res.send(result);
+    }).catch((err) => {
+        console.log(err);
+    })
+})
+
+// how to delete a blog
+// app.get('/delete-blog', (req,res) => {
+//     BlogModel.findByIdAndDelete('66ca7bb503c878ffde9d8077')
+//     .then((result) => {
+//         res.send(result);
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+// })
 
 app.get('/', (req, res) => {
     const blogs = [
