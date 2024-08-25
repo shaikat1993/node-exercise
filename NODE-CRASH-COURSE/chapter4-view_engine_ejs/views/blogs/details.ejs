@@ -1,11 +1,11 @@
 <!-- HTML Structure -->
 <html lang="en">
   <!-- Include Head Partial -->
-  <%- include('./partials/head.ejs') %>
+  <%- include('../partials/head.ejs') %>
 
   <body>
     <!-- Include Navigation Partial -->
-    <%- include('./partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
 
     <!-- Blog Details Section -->
     <div class="details content">
@@ -18,13 +18,15 @@
 
         <!-- Delete Button -->
         <div>
-          <a class="delete" data-doc="<%= blog._id %>">Delete</a>
+          <a class="delete" data-doc="<%= blog._id %>">
+            <img src="/trashcan.svg" alt="delete icon">
+          </a>
         </div>
       </div>
     </div>
 
     <!-- Include Footer Partial -->
-    <%- include('./partials/footer.ejs') %>
+    <%- include('../partials/footer.ejs') %>
 
     <!-- JavaScript Code -->
     <script>

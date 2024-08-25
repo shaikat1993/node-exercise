@@ -19,8 +19,8 @@ const ejs = require('ejs');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
-// Step 3: Import Blog Model
-const BlogModel = require("./models/blog");
+// Step 3: import router
+const blogRoutes = require('./routes/blogRoutes');
 
 // Step 4: Connect to MongoDB Database
 const dbURI = 'mongodb+srv://sadidur:shaikat12345@nodetutorials.kbpqp.mongodb.net/blog-application?retryWrites=true&w=majority&appName=nodetutorials';
@@ -49,74 +49,13 @@ mongoose.connect(dbURI)
       res.redirect('/blogs');
     });
 
-    // Get All Blogs
-    app.get('/blogs', (req, res) => {
-      BlogModel.find().sort({ createdAt: -1 })
-        .then(result => {
-          res.render('index', {
-            title: 'All Blogs',
-            blogs: result
-          })
-        }).catch(err => {
-          console.log(err);
-        })
-    });
-
-    // Get Home Page
-    app.get('/', (req, res) => {
-      const blogs = [
-        { title: 'Yoshi finds eggs', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-        { title: 'Mario finds stars', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-        { title: 'How to defeat bowser', snippet: 'Lorem ipsum dolor sit amet consectetur' },
-      ];
-      res.render('index', { title: 'Home', blogs });
-    });
-
     // Get About Page
     app.get('/about', (req, res) => {
       res.render('about', { title: 'About' });
     });
 
-    // Create New Blog
-    app.post('/blogs', (req, res) => {
-      const blog = new BlogModel(req.body);
-      blog.save()
-        .then((result) => {
-          res.redirect('/blogs');
-        }).catch((err) => {
-          console.log(err);
-        })
-    });
-
-    // Get Single Blog
-    app.get('/blogs/:id', (req, res) => {
-      const id = req.params.id;
-      BlogModel.findById(id)
-        .then(result => {
-          res.render('details', {
-            title: 'Blog Detail',
-            blog: result
-          })
-        }).catch(err => {
-          console.log(err);
-        })
-    });
-
-    // Delete Blog
-    app.delete('/blogs/:id', (req, res) => {
-      const id = req.params.id;
-      BlogModel.findByIdAndDelete(id)
-        .then((result) => {
-          res.json({ redirect: '/blogs' });
-        }).catch(err => {
-          console.log(err);
-        });
-    });
-
-    // Get Create Blog Page
-    app.get('/blogs/create', (req, res) => {
-      res.render('createBlog', { title: 'Create a new Blog' });
-    });
+    // blog routes
+    app.use('/blogs',blogRoutes);
 
     // 404 Error Handler
     app.use((req, res) => {
