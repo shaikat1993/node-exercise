@@ -16,5 +16,8 @@
     "mongodb": "^6.8.0",
     "mongoose": "^8.5.4",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.2"
   }
 }

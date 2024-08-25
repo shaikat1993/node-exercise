@@ -1,0 +1,54 @@
+<!-- HTML Structure -->
+<html lang="en">
+  <!-- Include Head Partial -->
+  <%- include('./partials/head.ejs') %>
+
+  <body>
+    <!-- Include Navigation Partial -->
+    <%- include('./partials/nav.ejs') %>
+
+    <!-- Blog Details Section -->
+    <div class="details content">
+      <!-- Display Blog Title -->
+      <h2><%= blog.title %></h2>
+
+      <!-- Display Blog Content -->
+      <div class="content">
+        <p><%= blog.body %></p>
+
+        <!-- Delete Button -->
+        <div>
+          <a class="delete" data-doc="<%= blog._id %>">Delete</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Include Footer Partial -->
+    <%- include('./partials/footer.ejs') %>
+
+    <!-- JavaScript Code -->
+    <script>
+      // Select the Delete Button
+      const trashcan = document.querySelector('a.delete');
+
+      // Add Event Listener to Delete Button
+      trashcan.addEventListener('click', (err) => {
+        // Construct the Endpoint URL for Deleting the Blog
+        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+        // Send a DELETE Request to the Endpoint
+        fetch(endpoint, {
+          method: 'DELETE'
+        })
+        .then((responseJson) => responseJson.json())
+        .then((data) => {
+          // Redirect to the URL specified in the Response
+          window.location.href = data.redirect;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      });
+    </script>
+  </body>
+</html>

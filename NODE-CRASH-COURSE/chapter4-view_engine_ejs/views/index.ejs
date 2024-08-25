@@ -16,8 +16,10 @@
         meaning does the array has any object or value or is it empty.  -->
         <% if (blogs.length > 0) { %>
             <% blogs.forEach(blog => { %>
-                <h3 class="title"><%= blog.title%></h3>
-                <p class="snippet"><%= blog.snippet%></p>
+                <a class="single" href="/blogs/<%=blog.id%>">
+                    <h3 class="title"><%= blog.title%></h3>
+                    <p class="snippet"><%= blog.snippet%></p>
+                </a>
             <%}) %>
         <% } else { %>
             <p>There are no Blogs to display.</p>
